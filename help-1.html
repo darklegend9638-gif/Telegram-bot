@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Справка по боту</title>
+<style>
+:root{--bg:#f4f5f8;--card:#fff;--text:#1d2030;--muted:#6b7183;--line:#e5e7ee;--acc:#6c4cf1;--accbg:#efeafe;--code:#f1f2f6;--ok:#1a9d57}
+@media (prefers-color-scheme:dark){:root{--bg:#0f1016;--card:#181a24;--text:#eceef5;--muted:#9aa0b4;--line:#272a38;--acc:#a48cff;--accbg:#262046;--code:#222534;--ok:#4cd68a}}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom)}
+header{padding:28px 18px 8px;max-width:860px;margin:0 auto}
+h1{margin:0 0 4px;font-size:26px}
+header p{margin:0;color:var(--muted)}
+.wrap{max-width:860px;margin:0 auto;padding:12px 14px 60px}
+.search{position:sticky;top:0;z-index:5;background:var(--bg);padding:10px 0}
+.search input{width:100%;padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:var(--card);color:var(--text);font-size:16px;outline:none}
+.search input:focus{border-color:var(--acc)}
+nav{display:flex;gap:8px;overflow-x:auto;padding:4px 0 10px;scrollbar-width:none}
+nav a{white-space:nowrap;text-decoration:none;color:var(--acc);background:var(--accbg);padding:6px 12px;border-radius:999px;font-size:14px}
+section{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;margin:14px 0}
+section h2{margin:0 0 4px;font-size:19px}
+section>p{margin:0 0 10px;color:var(--muted);font-size:14px}
+.cmd{display:grid;grid-template-columns:minmax(0,230px) 1fr;gap:4px 14px;padding:9px 0;border-top:1px solid var(--line)}
+.cmd:first-of-type{border-top:0}
+.cmd code{background:var(--code);padding:3px 8px;border-radius:8px;font:600 14px ui-monospace,Menlo,Consolas,monospace;align-self:start;overflow-wrap:anywhere}
+.cmd span{font-size:15px}
+.cmd small{display:block;color:var(--muted);font-size:13px;margin-top:2px}
+.tag{display:inline-block;font-size:11px;font-weight:600;padding:1px 7px;border-radius:999px;background:var(--accbg);color:var(--acc);margin-left:6px;vertical-align:middle}
+table{width:100%;border-collapse:collapse;font-size:14px}
+td,th{text-align:left;padding:8px 6px;border-top:1px solid var(--line);vertical-align:top}
+th{color:var(--muted);font-weight:600;border-top:0}
+.note{background:var(--accbg);border-radius:12px;padding:10px 12px;font-size:14px;margin-top:10px}
+.empty{display:none;text-align:center;color:var(--muted);padding:30px 0}
+footer{text-align:center;color:var(--muted);font-size:13px;padding:10px}
+@media (max-width:560px){.cmd{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header>
+  <h1>📖 Справка по боту</h1>
+  <p>Игры на монеты, соцкоманды, статистика чата, ранги и модерация. Все команды работают и словом («Топ»), и со слэшем (<code>/top</code>).</p>
+</header>
+
+<div class="wrap">
+<div class="search"><input id="q" type="search" placeholder="Поиск по командам: мут, дуэль, топ…" autocomplete="off"></div>
+<nav>
+  <a href="#coins">💰 Монеты</a><a href="#games">🎲 Игры</a><a href="#social">👥 Соцкоманды</a>
+  <a href="#stats">📊 Статистика</a><a href="#general">🧰 Общие</a><a href="#ranks">🎖 Ранги</a>
+  <a href="#mod">🛡 Модерация</a><a href="#owner">👑 Создатель</a>
+</nav>
+
+<section id="coins">
+  <h2>💰 Монеты и профиль</h2>
+  <p>Монеты виртуальные. Стартовый баланс — 1000. Суммы можно писать как 100, 1к, 2.5к, 1кк или «все».</p>
+  <div class="cmd"><code>Мины 100</code><span>Игра «Мины»: поле 5×5, 6 мин. Открывай клетки, растёт множитель, вовремя жми «Забрать».<small>/play · Мины · Игра</small></span></div>
+  <div class="cmd"><code>Баланс</code><span>Твой баланс.<small>/balance · «Мой баланс»</small></span></div>
+  <div class="cmd"><code>Бонус</code><span>+500 монет раз в 24 часа, нужно пройти капчу из кнопок.<small>/bonus</small></span></div>
+  <div class="cmd"><code>Передать @ник 100</code><span>Перевод монет. Можно ответом на сообщение: <b>Передать 100</b>.<small>/give</small></span></div>
+  <div class="cmd"><code>Профиль</code><span>Баланс, место по монетам, репутация, брак.<small>/profile · «Кто я»</small></span></div>
+  <div class="cmd"><code>Топ монет</code><span>Богачи бота. Имена в топе кликабельные.<small>Богачи · /rich</small></span></div>
+  <div class="cmd"><code>Меню</code><span>Кнопки быстрых команд снизу.<small>/menu</small></span></div>
+  <div class="cmd"><code>Айди</code><span>Твой Telegram ID.<small>/id</small></span></div>
+</section>
+
+<section id="games">
+  <h2>🎲 Игры и развлечения</h2>
+  <div class="cmd"><code>Дуэль @ник 100</code><span>Дуэль на монеты. Сопернику приходят кнопки «Принять / Отказаться», победитель случайный и забирает ставку.<small>/duel · можно ответом на сообщение</small></span></div>
+  <div class="cmd"><code>Рулетка 100</code><span>Русская рулетка: шанс проиграть 1 из 6, выигрыш +20% от ставки.<small>/roulette</small></span></div>
+  <div class="cmd"><code>Монетка</code><span>Орёл или решка.<small>/coin</small></span></div>
+  <div class="cmd"><code>Кубик</code><span>Бросок кубика 1–6.<small>/dice</small></span></div>
+  <div class="cmd"><code>Рандом 50</code><span>Случайное число: до N или между двумя числами.<small>/rand</small></span></div>
+  <div class="cmd"><code>Шанс что завтра дождь</code><span>Вероятность чего угодно в процентах.</span></div>
+  <div class="cmd"><code>Выбери чай или кофе</code><span>Бот выберет за тебя.</span></div>
+  <div class="cmd"><code>Шар вопрос</code><span>Магический шар отвечает на вопрос.</span></div>
+  <div class="cmd"><code>Калькулятор 2+2*2</code><span>Считает выражения со скобками и степенью (^).<small>/calc · Калк</small></span></div>
+  <div class="cmd"><code>Таймер 10м текст</code><span>Напомнит через заданное время (с, м, ч; до 24 часов).<small>/timer · перезапуск бота сбрасывает таймеры</small></span></div>
+</section>
+
+<section id="social">
+  <h2>👥 Соцкоманды</h2>
+  <div class="cmd"><code>Установитьник Имя</code><span>Свой ник в боте (до 32 символов). «Установитьник сброс» — вернуть имя из Telegram.<small>/nick · Сменитьник</small></span></div>
+  <div class="cmd"><code>+реп / -реп</code><span>Изменить репутацию человека ответом на его сообщение. Раз в час, себе нельзя.</span></div>
+  <div class="cmd"><code>Реп</code><span>Показать репутацию (свою или ответом на сообщение).</span></div>
+  <div class="cmd"><code>Брак</code><span>Предложить брак ответом на сообщение. Без ответа — статус твоего брака.<small>/marry</small></span></div>
+  <div class="cmd"><code>Развод</code><span>Расторгнуть брак.<small>/divorce</small></span></div>
+  <div class="cmd"><code>Кто я</code><span>Твоя карточка: личный график активности за 365 дней, ранг, репутация, баланс, первое появление, последний актив, актив за день / неделю / месяц / всё время, описание и награды. Внизу кнопки «Описание», «Награды», «Баланс», «Брак».<small>/whois · в группе</small></span></div>
+  <div class="cmd"><code>Кто ты</code><span>Карточка другого участника: ответом на его сообщение или @ником.</span></div>
+  <div class="cmd"><code>Описание Я люблю котиков</code><span>Текст «О себе» в твоей карточке (до 150 символов). «Описание сброс» — удалить.<small>/about</small></span></div>
+  <div class="cmd"><code>Наградить @ник текст</code><span>Выдать награду, она появится в карточке.<small>Ранг 3 · /award · «Снятьнаграды @ник» — убрать все</small></span></div>
+  <div class="cmd"><code>Шипперим</code><span>Случайная пара из активных участников чата с процентом совместимости.<small>/ship</small></span></div>
+  <div class="cmd"><code>Кто самый умный?</code><span>Бот выберет случайного участника чата.<small>/who</small></span></div>
+</section>
+
+<section id="stats">
+  <h2>📊 Статистика</h2>
+  <p>Бот считает сообщения с момента добавления в чат и хранит историю за 365 дней.</p>
+  <div class="cmd"><code>Стата чата</code><span>Сводка по чату и <b>график активности по дням</b>: светлые столбики — старые дни, тёмные — последние 7, рамка — сегодня.<small>/chatstat · Инфо чата · /chatinfo</small></span></div>
+  <div class="cmd"><code>Топ</code><span>Топ активности за сегодня.<small>/top</small></span></div>
+  <div class="cmd"><code>Топ неделя</code><span>Периоды: <b>неделя</b>, <b>месяц</b>, <b>вся</b>. Можно добавить число: <b>Топ 20</b>.</span></div>
+  <div class="cmd"><code>Стата</code><span>Твоя статистика: сообщения за день / неделю / месяц / всё время, место, ранг, баланс. Для другого — ответом или @ником.<small>/stat · Моя стата</small></span></div>
+</section>
+
+<section id="general">
+  <h2>🧰 Общие команды</h2>
+  <div class="cmd"><code>Пинг</code><span>Проверка, что бот жив.<small>/ping</small></span></div>
+  <div class="cmd"><code>ID чата</code><span>ID текущего чата.<small>/chatid</small></span></div>
+  <div class="cmd"><code>Айди</code><span>Твой Telegram ID.</span></div>
+  <div class="cmd"><code>Правила</code><span>Правила чата.<small>/rules</small></span></div>
+  <div class="cmd"><code>Кто админ</code><span>Список штата чата по рангам.<small>Админы · Ранги · /staff</small></span></div>
+  <div class="cmd"><code>Мои варны</code><span>Сколько у тебя предупреждений (лимит 3).</span></div>
+  <div class="cmd"><code>Помощь</code><span>Ссылка на эту страницу.<small>/help</small></span></div>
+</section>
+
+<section id="ranks">
+  <h2>🎖 Ранги чата</h2>
+  <p>В каждом чате ранги свои. Выдавать и менять можно только ранги ниже своего.</p>
+  <table>
+    <tr><th>Ранг</th><th>Что может</th></tr>
+    <tr><td>1 · Мл. модератор</td><td>Мут до 1 дня, Варн, Снятьварн, Удалить, Чистка до 50</td></tr>
+    <tr><td>2 · Модератор</td><td>+ Размут, Кик, Бан до 7 дней, Закреп, выдача ранга 1</td></tr>
+    <tr><td>3 · Мл. админ</td><td>+ Бан навсегда, Разбан, Тишина, Правила, Приветствие, выдача рангов до 2</td></tr>
+    <tr><td>4 · Админ</td><td>+ Антиссылки, Антифлуд, выдача рангов до 3</td></tr>
+    <tr><td>5 · Владелец</td><td>Создатель группы в Telegram, выдаёт ранги до 4</td></tr>
+  </table>
+  <div class="cmd"><code>Ранг @ник 3</code><span>Выдать ранг числом.</span></div>
+  <div class="cmd"><code>Админ / Младмин / Модер / Ммодер @ник</code><span>Выдать ранг 4 / 3 / 2 / 1.</span></div>
+  <div class="cmd"><code>Разжаловать @ник</code><span>Снять ранг.</span></div>
+</section>
+
+<section id="mod">
+  <h2>🛡 Модерация</h2>
+  <p>Нужны права администратора у самого бота. Игрока можно указать ответом на сообщение, @ником, именем или ID.</p>
+  <div class="cmd"><code>Мут @ник 30м причина</code><span>Запрет писать. Единицы: м / ч / д / н. Без срока — 1 час.<small>Ранг 1 · /mute</small></span></div>
+  <div class="cmd"><code>Размут @ник</code><span>Снять мут.<small>Ранг 2 · /unmute</small></span></div>
+  <div class="cmd"><code>Бан @ник 1д причина</code><span>Бан. Без срока — навсегда (с ранга 3).<small>Ранг 2 · /ban</small></span></div>
+  <div class="cmd"><code>Разбан @ник</code><span>Снять бан.<small>Ранг 3 · /unban</small></span></div>
+  <div class="cmd"><code>Кик @ник</code><span>Выгнать без бана.<small>Ранг 2 · /kick</small></span></div>
+  <div class="cmd"><code>Варн @ник причина</code><span>Предупреждение, 3 варна = бан.<small>Ранг 1 · /warn</small></span></div>
+  <div class="cmd"><code>Снятьварн @ник</code><span>Снять предупреждение.<small>Ранг 1 · Унварн</small></span></div>
+  <div class="cmd"><code>Варны @ник</code><span>Показать предупреждения.<small>Ранг 1</small></span></div>
+  <div class="cmd"><code>Чистка 20</code><span>Удалить последние N сообщений (до 50 на ранге 1).<small>Ранг 1 · /purge</small></span></div>
+  <div class="cmd"><code>Удалить</code><span>Удалить сообщение (ответом).<small>Ранг 1 · /del</small></span></div>
+  <div class="cmd"><code>Закреп / Открепить</code><span>Закрепить или открепить сообщение (ответом).<small>Ранг 2</small></span></div>
+  <div class="cmd"><code>Тишина вкл/выкл</code><span>Режим тишины: писать могут только модераторы. «Снять тишину» — выключить.<small>Ранг 3</small></span></div>
+  <div class="cmd"><code>Антиссылки вкл/выкл</code><span>Удалять ссылки от обычных участников.<small>Ранг 4</small></span></div>
+  <div class="cmd"><code>Антифлуд вкл/выкл</code><span>Мут на 5 минут за флуд.<small>Ранг 4</small></span></div>
+  <div class="cmd"><code>Установитьправила текст</code><span>Задать правила чата.<small>Ранг 3</small></span></div>
+  <div class="cmd"><code>Приветствие текст</code><span>Текст для новичков. Подстановки: {имя}, {группа}.<small>Ранг 3</small></span></div>
+  <div class="cmd"><code>Инфо @ник</code><span>Информация об участнике.<small>/info</small></span></div>
+  <div class="cmd"><code>Модерация</code><span>Краткая шпаргалка по модерации прямо в чате.<small>/modhelp</small></span></div>
+</section>
+
+<section id="owner">
+  <h2>👑 Создатель бота</h2>
+  <p>Доступно только админам бота. Остальным команды не отвечают.</p>
+  <div class="cmd"><code>Выдать @ник 500</code><span>Выдать монеты.<small>/grant</small></span></div>
+  <div class="cmd"><code>Забрать @ник 500</code><span>Забрать монеты.<small>/take</small></span></div>
+  <div class="cmd"><code>Сброс @ник</code><span>Сбросить баланс.<small>/reset</small></span></div>
+  <div class="cmd"><code>Статистика</code><span>Общая статистика бота.<small>/stats</small></span></div>
+</section>
+
+<p class="empty" id="empty">Ничего не найдено 🤷</p>
+<footer>Команды можно писать с большой или маленькой буквы · в группах бот должен быть админом для модерации</footer>
+</div>
+
+<script>
+(function(){
+  var q=document.getElementById('q'),empty=document.getElementById('empty');
+  var secs=[].slice.call(document.querySelectorAll('section'));
+  q.addEventListener('input',function(){
+    var v=q.value.trim().toLowerCase(),any=false;
+    secs.forEach(function(s){
+      var rows=[].slice.call(s.querySelectorAll('.cmd,tr:not(:first-child)')),hit=false;
+      rows.forEach(function(r){
+        var ok=!v||r.textContent.toLowerCase().indexOf(v)>-1;
+        r.style.display=ok?'':'none';
+        if(ok)hit=true;
+      });
+      var head=s.textContent.toLowerCase().indexOf(v)>-1&&v&&s.querySelector('h2').textContent.toLowerCase().indexOf(v)>-1;
+      if(head){rows.forEach(function(r){r.style.display='';});hit=true;}
+      s.style.display=hit||!v?'':'none';
+      if(hit||!v)any=true;
+    });
+    empty.style.display=any?'none':'block';
+  });
+})();
+</script>
+</body>
+</html>
